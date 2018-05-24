@@ -29,16 +29,16 @@ public class MainActivity extends AppCompatActivity {
         float lata_de_tinta;
         float galao_de_tinta;
 
-        galao_de_tinta = (float) 3.6;
+        galao_de_tinta = (float) 21.6;
 
         float area = Float.parseFloat(etArea.getText().toString());
         float resultado;
         float preco;
-        lata_de_tinta = (float) 18.0;
+        lata_de_tinta = (float) 108.0;
 
         switch (rgPrincipal.getCheckedRadioButtonId()){
             case R.id.rb1:
-                resultado = area / (lata_de_tinta * 6);
+                resultado = area / lata_de_tinta;
                 resultado = (float) Math.ceil(resultado);
                 preco = (resultado * 80);
 
@@ -49,15 +49,57 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.rb2:
 
-                resultado = area / (galao_de_tinta * 6);
+                resultado = area / galao_de_tinta;
                 resultado = (float) Math.ceil(resultado);
                 preco = resultado * 25;
 
                 tvResultado.setText(String.valueOf(preco));
                 tvNGaloes.setText(String.valueOf(resultado));
                 tvNLatas.setText("0");
+                break;
             case R.id.rb3:
+                float numero_latas = 0;
+                float numero_galoes = 0;
+                float litros;
+                litros = area / 6;
 
+                if (litros > 18){
+                    numero_latas = area / lata_de_tinta;
+                    numero_latas = (float) Math.round(numero_latas);
+
+
+                    if(litros%18 >= 10.8) {
+                        numero_latas++;
+
+                    } else{
+                        numero_galoes = (float) Math.ceil(litros%18);
+                        numero_galoes = (float) (numero_galoes%3.6);
+                    }
+
+
+                    preco = (numero_latas * 80 + (numero_galoes * 25));
+                    tvResultado.setText(String.valueOf(preco));
+                    tvNGaloes.setText(String.valueOf(numero_galoes));
+                    tvNLatas.setText(String.valueOf(numero_latas));
+
+                }
+
+                if (litros < 10.8){
+                    resultado = area / galao_de_tinta;
+                    resultado = (float) Math.round(resultado);
+                    preco = resultado * 25;
+
+                    tvResultado.setText(String.valueOf(preco));
+                    tvNGaloes.setText(String.valueOf(resultado));
+                    tvNLatas.setText("0");
+
+                }
+                if (litros > 10.8 && litros < 18){
+                    tvResultado.setText("R$80,00");
+                    tvNGaloes.setText("0");
+                    tvNLatas.setText("1");
+
+                }
                 break;
 
         }
