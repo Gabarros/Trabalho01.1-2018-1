@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">Trabalho01.X-2018-1</string>
     <string name="tvprincipal">Digite o tamanho da área em m²:</string>
-    <string name="etarea"/>
+    <string name="etarea"></string>
     <string name="rb1">Latas de 18 litros</string>
     <string name="rb2">Galões de 3,6 Litros</string>
     <string name="rb3">Comprar Combinação de Melhor Resultado</string>
     <string name="btok">Calcular</string>
     <string name="btlimpar">Limpar</string>
     <string name="tvresultado">R$: 00,00</string>
+    <string name="area">Area</string>
+    <string name="tvlatas">Latas:</string>
+    <string name="tvpreco">Preço:</string>
+    <string name="tvnlatas">0</string>
 
 </resources>
