@@ -22,44 +22,53 @@ public class MainActivity extends AppCompatActivity {
     private Button btLimpar;
 
     private TextView tvResultado;
-
+    private TextView tvNLatas;
+    private TextView tvNGaloes;
 
     public void calcular(){
         float lata_de_tinta;
         float galao_de_tinta;
 
+        galao_de_tinta = (float) 3.6;
+
         float area = Float.parseFloat(etArea.getText().toString());
         float resultado;
         float preco;
+        lata_de_tinta = (float) 18.0;
 
-        lata_de_tinta = 18;
-        galao_de_tinta = (float) 3.6;
+        switch (rgPrincipal.getCheckedRadioButtonId()){
+            case R.id.rb1:
+                resultado = area / (lata_de_tinta * 6);
+                resultado = (float) Math.ceil(resultado);
+                preco = (resultado * 80);
 
-        if (rb1.isChecked()){
-            resultado = area / (galao_de_tinta * 6);
-            resultado += 0.5;
-            resultado = Math.round(resultado);
-            preco = resultado * 80;
+                tvResultado.setText(String.valueOf(preco));
+                tvNLatas.setText(String.valueOf(resultado));
+                tvNGaloes.setText("0");
+                break;
 
-            tvResultado.setText(String.valueOf(preco));
+            case R.id.rb2:
+
+                resultado = area / (galao_de_tinta * 6);
+                resultado = (float) Math.ceil(resultado);
+                preco = resultado * 25;
+
+                tvResultado.setText(String.valueOf(preco));
+                tvNGaloes.setText(String.valueOf(resultado));
+                tvNLatas.setText("0");
+            case R.id.rb3:
+
+                break;
+
         }
 
-        if (rb2.isChecked()){
-            resultado = area / (lata_de_tinta * 6);
-            resultado += 0.5;
-            resultado = Math.round(resultado);
-            preco = resultado * 25;
-
-            tvResultado.setText(String.valueOf(preco));
-        }
-        if (rb3.isChecked()){
-
-        }
     }
 
     public void limpar(){
         etArea.setText("");
         tvResultado.setText("R$ 00,00");
+        tvNGaloes.setText("0");
+        tvNLatas.setText("0");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         btLimpar = (Button) findViewById(R.id.btLimpar);
 
         tvResultado = (TextView) findViewById(R.id.tvResultado);
+        tvNLatas = (TextView) findViewById(R.id.tvNLatas);
+        tvNGaloes = (TextView) findViewById(R.id.tvNGaloes);
 
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 //if (rgPrincipal.isSelected()){
 
                   calcular();
-                  //  etArea.setText("funcionei");
 
-               // }
             }
         });
 
@@ -98,12 +107,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
-
-
 }

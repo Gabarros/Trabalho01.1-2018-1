@@ -12,5 +12,8 @@
     <string name="tvlatas">Latas:</string>
     <string name="tvpreco">Preço:</string>
     <string name="tvnlatas">0</string>
+    <string name="tvgaloes">Galões:</string>
+    <string name="tvngaloes">0</string>
+
 
 </resources>
